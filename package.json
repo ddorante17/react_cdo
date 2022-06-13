@@ -1,9 +1,9 @@
 {
-  "homepage": "https://horizon-ui.com/horizon-ui-chakra",
-  "name": "horizon-ui-chakra",
+  "homepage": "https://cdocaracas.org",
+  "name": "My CDO",
   "version": "1.0.1",
   "private": true,
-  "dependencies": { 
+  "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "1.8.8",
     "@chakra-ui/system": "^1.12.1",
