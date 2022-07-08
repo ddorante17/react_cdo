@@ -17,7 +17,7 @@ import DataTables from "views/admin/dataTables";
 import RTL from "views/admin/rtl";
 
 import SignInCentered from "views/auth/signIn";
-
+import SignUpCentered from "views/auth/signUp";
 const routes = [
   {
     name: "Main Dashboard",
@@ -69,6 +69,13 @@ const routes = [
     icon: <Icon as={MdHome} width='20px' height='20px' color='inherit' />,
     component: RTL,
   },
+  {
+    name: "Sign Up",
+    layout: "/auth",
+    path: "/sign-up",
+    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    component: SignUpCentered,
+  }
 ];
 
 export default routes;

@@ -26,6 +26,7 @@ import { MdNotificationsNone, MdInfoOutline } from "react-icons/md";
 import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes.js";
+import {useAuth} from "../../contexts/AuthContext";
 export default function HeaderLinks(props) {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
@@ -43,6 +44,7 @@ export default function HeaderLinks(props) {
     "14px 17px 40px 4px rgba(112, 144, 176, 0.06)"
   );
   const borderButton = useColorModeValue("secondaryGray.500", "whiteAlpha.200");
+  const {currentUser, logout} = useAuth();
   return (
     <Flex
       w={{ sm: "100%", md: "auto" }}
@@ -252,7 +254,7 @@ export default function HeaderLinks(props) {
               fontSize='sm'
               fontWeight='700'
               color={textColor}>
-              👋&nbsp; Hey, Adela
+              👋&nbsp; Hey, {JSON.stringify(currentUser.email, null, 2)}
             </Text>
           </Flex>
           <Flex flexDirection='column' p='10px'>
@@ -276,7 +278,10 @@ export default function HeaderLinks(props) {
               color='red.400'
               borderRadius='8px'
               px='14px'>
-              <Text fontSize='sm'>Log out</Text>
+              <Text fontSize='sm' onClick={async e=> {
+                e.preventDefault();
+                logout();
+              }}>Log out</Text>
             </MenuItem>
           </Flex>
         </MenuList>
