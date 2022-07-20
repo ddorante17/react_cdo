@@ -27,6 +27,7 @@ import { IoMdMoon, IoMdSunny } from "react-icons/io";
 import { FaEthereum } from "react-icons/fa";
 import routes from "routes.js";
 import {useAuth} from "../../contexts/AuthContext";
+import {NavLink} from "react-router-dom";
 export default function HeaderLinks(props) {
   const { secondary } = props;
   const { colorMode, toggleColorMode } = useColorMode();
@@ -161,50 +162,6 @@ export default function HeaderLinks(props) {
             me='10px'
           />
         </MenuButton>
-        <MenuList
-          boxShadow={shadow}
-          p='20px'
-          me={{ base: "30px", md: "unset" }}
-          borderRadius='20px'
-          bg={menuBg}
-          border='none'
-          mt='22px'
-          minW={{ base: "unset" }}
-          maxW={{ base: "360px", md: "unset" }}>
-          <Image src={navImage} borderRadius='16px' mb='28px' />
-          <Flex flexDirection='column'>
-            <Link w='100%' href='https://horizon-ui.com/pro'>
-              <Button w='100%' h='44px' mb='10px' variant='brand'>
-                Buy Horizon UI PRO
-              </Button>
-            </Link>
-            <Link
-              w='100%'
-              href='https://horizon-ui.com/documentation/docs/introduction'>
-              <Button
-                w='100%'
-                h='44px'
-                mb='10px'
-                border='1px solid'
-                bg='transparent'
-                borderColor={borderButton}>
-                See Documentation
-              </Button>
-            </Link>
-            <Link
-              w='100%'
-              href='https://github.com/horizon-ui/horizon-ui-chakra'>
-              <Button
-                w='100%'
-                h='44px'
-                variant='no-hover'
-                color={textColor}
-                bg='transparent'>
-                Try Horizon Free
-              </Button>
-            </Link>
-          </Flex>
-        </MenuList>
       </Menu>
 
       <Button
@@ -254,7 +211,7 @@ export default function HeaderLinks(props) {
               fontSize='sm'
               fontWeight='700'
               color={textColor}>
-              👋&nbsp; Hey, {JSON.stringify(currentUser.email, null, 2)}
+              👋&nbsp; Hey, {currentUser.firstName}
             </Text>
           </Flex>
           <Flex flexDirection='column' p='10px'>
@@ -263,15 +220,17 @@ export default function HeaderLinks(props) {
               _focus={{ bg: "none" }}
               borderRadius='8px'
               px='14px'>
-              <Text fontSize='sm'>Profile Settings</Text>
+              <NavLink to='/admin/profile'>
+                <Text fontSize='sm'>Mi perfil</Text>
+              </NavLink>
             </MenuItem>
-            <MenuItem
+ {/*           <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}
               borderRadius='8px'
               px='14px'>
               <Text fontSize='sm'>Newsletter Settings</Text>
-            </MenuItem>
+            </MenuItem>*/}
             <MenuItem
               _hover={{ bg: "none" }}
               _focus={{ bg: "none" }}

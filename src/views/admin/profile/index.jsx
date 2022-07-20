@@ -1,10 +1,10 @@
 /*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
+  _   _  ___  ____  ___ ________  _   _   _   _ ___
+ | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _|
+ | |_| | | | | |_) || |  / / | | |  \| | | | | || |
  |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
  |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
+
 =========================================================
 * Horizon UI - v1.1.0
 =========================================================
@@ -21,7 +21,7 @@
 */
 
 // Chakra imports
-import { Box, Grid } from "@chakra-ui/react";
+import {Box, Grid} from "@chakra-ui/react";
 
 // Custom components
 import Banner from "views/admin/profile/components/Banner";
@@ -35,8 +35,10 @@ import Upload from "views/admin/profile/components/Upload";
 import banner from "assets/img/auth/banner.png";
 import avatar from "assets/img/avatars/avatar4.png";
 import React from "react";
+import {useAuth} from "../../../contexts/AuthContext";
 
 export default function Overview() {
+    const {currentUser} = useAuth();
   return (
     <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
@@ -54,7 +56,7 @@ export default function Overview() {
           gridArea='1 / 1 / 2 / 2'
           banner={banner}
           avatar={avatar}
-          name='Adela Parkson'
+          name= {currentUser.firstName + " " + currentUser.lastName}
           job='Product Designer'
           posts='17'
           followers='9.7k'

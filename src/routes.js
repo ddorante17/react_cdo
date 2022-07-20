@@ -18,6 +18,8 @@ import RTL from "views/admin/rtl";
 
 import SignInCentered from "views/auth/signIn";
 import SignUpCentered from "views/auth/signUp";
+import ForgotPassword from "./views/auth/forgotPassword";
+import ResetPasswordPage from "./views/auth/resetPassword/resetPassword";
 const routes = [
   {
     name: "Main Dashboard",
@@ -75,6 +77,20 @@ const routes = [
     path: "/sign-up",
     icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
     component: SignUpCentered,
+  },
+  {
+    name: "Olvido clave",
+    layout: "/auth",
+    path: "/forgot-password",
+    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    component: ForgotPassword,
+  },
+  {
+    name: "Reset password",
+    layout: "/auth",
+    path: "/reset-password",
+    icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
+    component: ResetPasswordPage,
   }
 ];
 

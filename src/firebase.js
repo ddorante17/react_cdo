@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"
 import { getAnalytics } from "firebase/analytics";
-import {getDatabase} from "@firebase/database";
+import {getDatabase} from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,6 +12,7 @@ const firebaseConfig = {
     apiKey: "AIzaSyDRuKa5ajWEJLC1E8gv42LOG956E5-dNPs",
     authDomain: "cdocssreact.firebaseapp.com",
     projectId: "cdocssreact",
+    databaseURL: "https://cdocssreact-default-rtdb.firebaseio.com",
     storageBucket: "cdocssreact.appspot.com",
     messagingSenderId: "41161484700",
     appId: "1:41161484700:web:6882cf7a74b42b35d14059",

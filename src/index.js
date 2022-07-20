@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "assets/css/App.css";
-import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+import {HashRouter, Route, Switch, Redirect, useLocation} from "react-router-dom";
 import AuthLayout from "layouts/auth";
 import AdminLayout from "layouts/admin";
 import RTLLayout from "layouts/rtl";
@@ -15,7 +15,7 @@ ReactDOM.render(
         <React.StrictMode>
           <HashRouter>
             <Switch>
-              <Route path={`/auth`} component={AuthLayout} />
+              <ProtectedRoute path={`/auth`} component={AuthLayout} />
               <ProtectedRoute path={`/admin`} component={AdminLayout} />
               <Route path={`/rtl`} component={RTLLayout} />
               <Redirect from='/' to='/auth' />
@@ -30,9 +30,10 @@ ReactDOM.render(
 
 function ProtectedRoute(props) {
     const { currentUser } = useAuth()
+    const location = useLocation()
     const { path } = props
 
-    if(path === 'sign-up' || path === 'sign-in' || path === 'forgot-password'){
+    if(path === '/auth' || path === 'sign-up' || path === 'sign-in' || path === 'forgot-password'){
         return currentUser ? (<Redirect to={location.state?.from ?? '/admin'}/>
         ) : (
             <Route {...props}/>

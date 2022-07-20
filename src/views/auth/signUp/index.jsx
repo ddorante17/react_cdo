@@ -1,12 +1,9 @@
-
-
 import React, {useState} from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 // Chakra imports
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
@@ -17,37 +14,24 @@ import {
   InputRightElement,
   Text,
   useColorModeValue,
-    useToast
+  useToast
 } from "@chakra-ui/react";
 // Custom components
-import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/Default";
 // Assets
 import illustration from "assets/img/auth/auth.png";
-import { FcGoogle } from "react-icons/fc";
-import { MdOutlineRemoveRedEye } from "react-icons/md";
-import { RiEyeCloseLine } from "react-icons/ri";
-import {auth} from "../../../firebase";
+import {MdOutlineRemoveRedEye} from "react-icons/md";
+import {RiEyeCloseLine} from "react-icons/ri";
+import db from "../../../firebase";
 import {useAuth} from "../../../contexts/AuthContext";
 import useMounted from "../../../hooks/useMounted";
+import {ref, set} from "firebase/database"
 
 function SignUp() {
   // Chakra color mode
   const textColor = useColorModeValue("navy.700", "white");
   const textColorSecondary = "gray.400";
-  const textColorDetails = useColorModeValue("navy.700", "secondaryGray.600");
-  const textColorBrand = useColorModeValue("brand.500", "white");
   const brandStars = useColorModeValue("brand.500", "brand.400");
-  const googleBg = useColorModeValue("secondaryGray.300", "whiteAlpha.200");
-  const googleText = useColorModeValue("navy.700", "white");
-  const googleHover = useColorModeValue(
-    { bg: "gray.200" },
-    { bg: "whiteAlpha.300" }
-  );
-  const googleActive = useColorModeValue(
-    { bg: "secondaryGray.300" },
-    { bg: "whiteAlpha.200" }
-  );
   const history = useHistory();
   const [show, setShow] = React.useState(false);
   const [email, setEmail] = useState('');
@@ -75,6 +59,16 @@ function SignUp() {
     register(email, password)
         .then((response) => {
           console.log(response);
+          console.log(response.user.uid);
+          const userRef = ref(db, "users/" + response.user.uid);
+          //const newUserRef = push(userRef);
+          set(userRef, {
+            userUid: response.user.uid,
+            firstName: name,
+            lastName: lastname,
+            phone: phone,
+            email: email
+          })
           history.push("/admin/default");
         })
         .catch((error) => {
