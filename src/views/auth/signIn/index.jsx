@@ -57,7 +57,7 @@ function SignIn() {
     signIn(email, password)
         .then((response) => {
           console.log(response);
-          history.push("/admin/default");
+          history.push("/admin/profile");
         })
         .catch((error) => {
           console.log(error.message);

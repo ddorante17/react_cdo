@@ -25,7 +25,7 @@ import {RiEyeCloseLine} from "react-icons/ri";
 import db from "../../../firebase";
 import {useAuth} from "../../../contexts/AuthContext";
 import useMounted from "../../../hooks/useMounted";
-import {ref, set} from "firebase/database"
+import {ref, set, push} from "firebase/database"
 
 function SignUp() {
   // Chakra color mode
@@ -46,6 +46,7 @@ function SignUp() {
 
   const { register } = useAuth();
   const mounted = useMounted();
+
   const handleSignUp = () => {
     if(!confPassword || !password){
       toast({
@@ -58,16 +59,26 @@ function SignUp() {
     setIsSubmiting(true);
     register(email, password)
         .then((response) => {
-          console.log(response);
-          console.log(response.user.uid);
           const userRef = ref(db, "users/" + response.user.uid);
-          //const newUserRef = push(userRef);
-          set(userRef, {
-            userUid: response.user.uid,
+          const personRef = ref(db, "person/");
+          const newPersonRef = push(personRef);
+          console.log(newPersonRef.key)
+          set(newPersonRef, {
             firstName: name,
             lastName: lastname,
             phone: phone,
             email: email
+          })
+
+          set(userRef, {
+            userUid: response.user.uid,
+            username: email,
+            nickname: name + " " + lastname,
+            person_uid: newPersonRef.key,
+            last_connect: new Date().getTime(),
+            created_at: new Date().getTime(),
+            active: true,
+            group_permisions:""
           })
           history.push("/admin/default");
         })

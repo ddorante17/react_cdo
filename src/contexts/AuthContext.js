@@ -28,8 +28,7 @@ export default function AuthContextProvider({children}) {
         const unsubscribe = onAuthStateChanged(auth, user => {
             if(user){
                 get(child(getData, "users/" + user.uid)).then((snapshot) => {
-                    const userFull = snapshot.val();
-                    user = userFull;
+                    const user = snapshot.val();
                     setCurrentUser(user);
                 });
             }

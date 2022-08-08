@@ -23,7 +23,7 @@ function Dropzone(props) {
       cursor='pointer'
       {...getRootProps({ className: "dropzone" })}
       {...rest}>
-      <Input variant='main' {...getInputProps()} />
+      <Input type="file" variant='main' {...getInputProps()} />
       <Button variant='no-effects'>{content}</Button>
     </Flex>
   );

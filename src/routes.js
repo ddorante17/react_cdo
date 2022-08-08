@@ -79,7 +79,7 @@ const routes = [
     component: SignUpCentered,
   },
   {
-    name: "Olvido clave",
+    name: "Olvidó clave",
     layout: "/auth",
     path: "/forgot-password",
     icon: <Icon as={MdLock} width='20px' height='20px' color='inherit' />,
